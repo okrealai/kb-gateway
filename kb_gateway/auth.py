@@ -4,17 +4,17 @@ from __future__ import annotations
 
 from mcp.server.auth.provider import AccessToken
 
-from .config import api_token
+from .config import api_token, api_tokens
 
 
 class StaticTokenVerifier:
-    """Verify KB_GATEWAY_API_TOKEN bearer tokens."""
+    """Verify bearer tokens against KB_GATEWAY_API_TOKEN and optional keys file."""
 
-    def __init__(self, expected: str | None = None) -> None:
-        self._expected = expected if expected is not None else api_token()
+    def __init__(self, expected: frozenset[str] | None = None) -> None:
+        self._expected = expected if expected is not None else api_tokens()
 
     async def verify_token(self, token: str) -> AccessToken | None:
-        if not self._expected or token != self._expected:
+        if not self._expected or token not in self._expected:
             return None
         return AccessToken(
             token=token,

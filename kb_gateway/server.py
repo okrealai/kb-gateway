@@ -6,7 +6,7 @@ from mcp.server.auth.settings import AuthSettings
 from mcp.server.fastmcp import FastMCP
 
 from .auth import StaticTokenVerifier
-from .config import api_token, gateway_host, gateway_port, public_url
+from .config import api_tokens, gateway_host, gateway_port, public_url
 from . import tools as T
 
 INSTRUCTIONS = """
@@ -26,8 +26,8 @@ Read-only only — no writes.
 
 
 def build_mcp(*, enable_auth: bool | None = None) -> FastMCP:
-    token = api_token()
-    use_auth = enable_auth if enable_auth is not None else bool(token)
+    tokens = api_tokens()
+    use_auth = enable_auth if enable_auth is not None else bool(tokens)
 
     kwargs: dict = {
         "name": "keyflo-learning-kb",
@@ -39,14 +39,14 @@ def build_mcp(*, enable_auth: bool | None = None) -> FastMCP:
     }
 
     if use_auth:
-        if not token:
-            raise RuntimeError("KB_GATEWAY_API_TOKEN required when auth enabled")
+        if not tokens:
+            raise RuntimeError("KB_GATEWAY_API_TOKEN or KB_GATEWAY_API_KEYS_PATH required when auth enabled")
         kwargs["auth"] = AuthSettings(
             issuer_url=public_url(),
             resource_server_url=public_url(),
             required_scopes=["learning:read"],
         )
-        kwargs["token_verifier"] = StaticTokenVerifier(token)
+        kwargs["token_verifier"] = StaticTokenVerifier(tokens)
 
     mcp = FastMCP(**kwargs)
 

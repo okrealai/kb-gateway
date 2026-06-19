@@ -1,29 +1,27 @@
 # Client setup — wire remote agents to kb-gateway
 
-kb-gateway runs on the **blockstorage server** 24/7 (`kb-gateway.service`). Neo4j and Pinecone keys stay server-side — clients only need a bearer token.
-
-## Remote MCP (Tailscale — recommended)
-
-Anyone on your **smithjsfamily@** tailnet (Cole, your Mac, laptop):
+## Cole / remote MCP (HTTPS — no Tailscale needed)
 
 ```json
 {
   "mcpServers": {
     "keyflo-learning-kb": {
-      "url": "http://100.122.28.113:8790/mcp",
+      "url": "https://kb-mcp.keyflo.ai/mcp",
       "headers": {
-        "Authorization": "Bearer YOUR_KB_GATEWAY_API_TOKEN"
+        "Authorization": "Bearer YOUR_KB_GATEWAY_MCP_TOKEN"
       }
     }
   }
 }
 ```
 
-Traffic stays inside the tailnet. Keyflo learning KB only.
+**Cole:** clone `KeyFlo-ai/kb-gateway`, run `./scripts/setup-cole-mcp.sh` — pulls token from GitHub variables. Full guide: [`docs/COLE-SETUP.md`](COLE-SETUP.md).
 
-## Cursor / Claude on the server (stdio)
+## Tailscale (optional private path)
 
-When the agent runs on the server itself:
+On tailnet `smithjsfamily@gmail.com`: `http://100.122.28.113:8790/mcp` with same bearer token. Invite Cole at https://login.tailscale.com/admin/users.
+
+## Cursor on the server (stdio)
 
 ```json
 {
@@ -38,37 +36,6 @@ When the agent runs on the server itself:
 }
 ```
 
-## Cursor / Claude with SSH to server (stdio)
-
-If you prefer stdio over HTTP from a local machine:
-
-```json
-{
-  "mcpServers": {
-    "keyflo-learning-kb": {
-      "command": "ssh",
-      "args": [
-        "blockstorage-server",
-        "/root/.venv-langchain-course/bin/python",
-        "-m", "kb_gateway",
-        "--transport", "stdio",
-        "--no-auth"
-      ]
-    }
-  }
-}
-```
-
-## Python (scripts on server)
-
-```python
-from kb_gateway.tools import route_query, query_namespace, graph_query
-
-print(route_query("how do I structure a Meta lead gen campaign?")["answer"])
-```
-
 ## Which tool to call
 
-When unsure → **`route_query`**. See [`routing.md`](routing.md).
-
-Read [`AGENTS.md`](../AGENTS.md) in repo — agents should load it for routing rules.
+When unsure → **`route_query`**. See [`routing.md`](routing.md). Read [`AGENTS.md`](../AGENTS.md).

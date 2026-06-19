@@ -29,5 +29,21 @@ def api_token() -> str | None:
     return os.environ.get("KB_GATEWAY_API_TOKEN") or None
 
 
+def api_tokens() -> frozenset[str]:
+    """All accepted bearer tokens (env + optional keys file)."""
+    tokens: set[str] = set()
+    if t := api_token():
+        tokens.add(t)
+    path = os.environ.get("KB_GATEWAY_API_KEYS_PATH")
+    if path:
+        p = Path(path)
+        if p.is_file():
+            for line in p.read_text().splitlines():
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    tokens.add(line)
+    return frozenset(tokens)
+
+
 def public_url() -> str:
     return os.environ.get("KB_GATEWAY_PUBLIC_URL", f"http://{gateway_host()}:{gateway_port()}")

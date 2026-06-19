@@ -3,5 +3,5 @@ __pycache__/
 .venv/
 .env
 .env.*
-thoughts/
+config/cole-mcp.json
 *.log
