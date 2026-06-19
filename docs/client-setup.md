@@ -2,7 +2,7 @@
 
 ## Remote via Tailscale (no Serve required)
 
-If Cole is on your **smithjsfamily@** tailnet (same as `vetriq-server`), use the MagicDNS or tailnet IP directly:
+If Cole is on your **smithjsfamily@** tailnet, use the server's Tailscale IP:
 
 ```json
 {
