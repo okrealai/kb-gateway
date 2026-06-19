@@ -1,0 +1,18 @@
+# Phase 6 hardening — project close retro
+
+{
+  "project": "KeyFlo-ai/kb-gateway",
+  "phase": 6,
+  "generated": "2026-06-19",
+  "summary": "Automated ops, 20-query golden set, openevals quality baseline, LangSmith HOLD, Cole audit confirmed.",
+  "w_items": {
+    "W16": "verify_remote_mcp.sh + weekly_ops + cron installed",
+    "W17": "cloudflare-waf-rate-limit.md drafted — dashboard approve pending",
+    "W18": "golden_ragas.jsonl 20 rows",
+    "W19": "openevals baseline (D-OP-002 ragas vertex dep)",
+    "W20": "HOLD — MCP 20% of root runs",
+    "W21": "cole in audit log",
+    "W22": "mem facts stored"
+  },
+  "reports": ["eval/reports/ragas-baseline-20260619.json"]
+}

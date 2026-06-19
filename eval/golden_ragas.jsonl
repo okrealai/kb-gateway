@@ -1,0 +1,20 @@
+{"id": "vector-pas", "question": "what is PAS copy structure?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "vector-mcp-hosting", "question": "how should I expose an MCP server for remote agents?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "graph-topics", "question": "what topics exist in the learning knowledge graph for LangGraph?", "expected_route": "graph", "source": "regression", "ground_truth": null}
+{"id": "both-campaign", "question": "how do I structure a Meta lead gen campaign and what related topics are in the graph?", "expected_route": "both", "source": "regression", "ground_truth": null}
+{"id": "vector-langchain", "question": "how do I use LangGraph checkpointers for persistence?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "vector-storybrand", "question": "what is the StoryBrand framework one-liner structure?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "graph-disputes", "question": "do any courses disagree about negotiation opening tactics?", "expected_route": "graph", "source": "regression", "ground_truth": null}
+{"id": "vector-headline", "question": "how do I write a benefit-led headline?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "graph-coverage", "question": "which courses cover copywriting in the knowledge graph?", "expected_route": "graph", "source": "regression", "ground_truth": null}
+{"id": "vector-rag-eval", "question": "how do I evaluate RAG faithfulness with RAGAS?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "vector-langsmith", "question": "how do I enable LangSmith tracing for a LangChain app?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "both-meta-ads", "question": "best practices for Meta lead gen and what does the corpus cover on tracking?", "expected_route": "both", "source": "regression", "ground_truth": null}
+{"id": "vector-gated-routine", "question": "what is the gated execution routine for multi-session projects?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "vector-judge-triage", "question": "how do I calibrate an LLM judge with a human annotation queue?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "graph-disciplines", "question": "how many disciplines are in the learning knowledge graph?", "expected_route": "graph", "source": "regression", "ground_truth": null}
+{"id": "vector-multi-namespace", "question": "how does multi-namespace RAG prompt routing work?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "both-email-sequence", "question": "how do I plan an email nurture sequence and what graph topics cover email?", "expected_route": "both", "source": "regression", "ground_truth": null}
+{"id": "vector-structured-refusal", "question": "how do structured refusals reduce RAG hallucination?", "expected_route": "vector", "source": "regression", "ground_truth": null}
+{"id": "graph-agentic-router", "question": "when should I use graph query vs vector query in the agentic router?", "expected_route": "graph", "source": "regression", "ground_truth": null}
+{"id": "vector-cost-traces", "question": "how do I track LLM cost from LangSmith traces?", "expected_route": "vector", "source": "regression", "ground_truth": null}

@@ -70,5 +70,53 @@
     "question": "best practices for Meta lead gen and what does the corpus cover on tracking?",
     "expected_route": "both",
     "notes": "synthesis + graph coverage"
+  },
+  {
+    "id": "vector-gated-routine",
+    "question": "what is the gated execution routine for multi-session projects?",
+    "expected_route": "vector",
+    "notes": "patterns gated-execution-routine"
+  },
+  {
+    "id": "vector-judge-triage",
+    "question": "how do I calibrate an LLM judge with a human annotation queue?",
+    "expected_route": "vector",
+    "notes": "judge-triage-queue-calibration pattern"
+  },
+  {
+    "id": "graph-disciplines",
+    "question": "how many disciplines are in the learning knowledge graph?",
+    "expected_route": "graph",
+    "notes": "Neo4j stats-style"
+  },
+  {
+    "id": "vector-multi-namespace",
+    "question": "how does multi-namespace RAG prompt routing work?",
+    "expected_route": "vector",
+    "notes": "multi-namespace-rag-prompt-routing pattern"
+  },
+  {
+    "id": "both-email-sequence",
+    "question": "how do I plan an email nurture sequence and what graph topics cover email?",
+    "expected_route": "both",
+    "notes": "hybrid campaign + coverage"
+  },
+  {
+    "id": "vector-structured-refusal",
+    "question": "how do structured refusals reduce RAG hallucination?",
+    "expected_route": "vector",
+    "notes": "structured-refusal-for-hallucination pattern"
+  },
+  {
+    "id": "graph-agentic-router",
+    "question": "when should I use graph query vs vector query in the agentic router?",
+    "expected_route": "graph",
+    "notes": "kg-vector-routing pattern"
+  },
+  {
+    "id": "vector-cost-traces",
+    "question": "how do I track LLM cost from LangSmith traces?",
+    "expected_route": "vector",
+    "notes": "cost-tracking-from-langsmith-traces pattern"
   }
 ]

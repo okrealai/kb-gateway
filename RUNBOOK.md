@@ -79,11 +79,37 @@ Route borderline runs to `kb-gateway-review` via LangSmith online eval rule or m
 
 Never contains bearer tokens or full question text.
 
-## 5. Change process
+## 5. Automation & cron (Phase 6 W16)
+
+### Scripts
+
+| Script | Cadence | Purpose |
+|---|---|---|
+| `verify_remote_mcp.sh` | daily | HTTPS 401/406 + local health |
+| `weekly_ops.sh` | weekly | usage + verify + eval_routes + split assess |
+| `mint_golden_from_traces.py` | on demand / weekly | Refresh `eval/golden_ragas.jsonl` |
+| `eval_ragas.sh` | weekly / pre-release | RAGAS baseline (cap 10 default) |
+| `assess_langsmith_split.sh` | monthly | D-008 HOLD/SPLIT recommendation |
+| `check_cole_handoff.sh` | weekly | audit `client=cole` |
+
+### Install cron
+
+```bash
+sudo cp deploy/cron-kb-gateway.example /etc/cron.d/kb-gateway-ops
+sudo chmod 644 /etc/cron.d/kb-gateway-ops
+```
+
+Logs: `logs/cron-verify.log`, `logs/cron-weekly.log`
+
+### WAF (W17)
+
+See `deploy/cloudflare-waf-rate-limit.md` · `./scripts/setup_cloudflare_rate_limit.sh`
+
+## 6. Change process
 
 Draft → `scripts/smoke_test.sh` → PR review → merge → `systemctl restart kb-gateway` → `./scripts/usage_report.sh 1`
 
-## 6. MCP config
+## 7. MCP config
 
 See `docs/COLE-SETUP.md` and `docs/client-setup.md`. Tokens in `learning-kb-api-keys.txt` + GH variables.
 

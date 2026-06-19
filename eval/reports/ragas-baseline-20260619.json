@@ -1,0 +1,24 @@
+{
+  "ts": "2026-06-19T20:38:39.868128+00:00",
+  "method": "openevals-judges (groundedness + answer_relevance)",
+  "n": 3,
+  "mean_groundedness": 0.9333333333333332,
+  "mean_answer_relevance": 0.9666666666666667,
+  "details": [
+    {
+      "id": "vector-pas",
+      "groundedness": 1.0,
+      "answer_relevance": 1.0
+    },
+    {
+      "id": "vector-mcp-hosting",
+      "groundedness": 1.0,
+      "answer_relevance": 1.0
+    },
+    {
+      "id": "graph-topics",
+      "groundedness": 0.8,
+      "answer_relevance": 0.9
+    }
+  ]
+}

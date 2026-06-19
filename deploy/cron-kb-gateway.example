@@ -1,0 +1,12 @@
+# kb-gateway ops cron — /etc/cron.d/kb-gateway-ops (W16)
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Daily remote MCP verify (06:15 UTC)
+15 6 * * * root cd /mnt/blockstorage/business/Keyflo_AI/08_Development/kb-gateway && ./scripts/verify_remote_mcp.sh >> logs/cron-verify.log 2>&1
+
+# Weekly ops (Monday 07:00 UTC)
+0 7 * * 1 root cd /mnt/blockstorage/business/Keyflo_AI/08_Development/kb-gateway && ./scripts/weekly_ops.sh 7 >> logs/cron-weekly.log 2>&1
+
+# Monthly LangSmith split assess (1st of month 08:00 UTC)
+0 8 1 * * root cd /mnt/blockstorage/business/Keyflo_AI/08_Development/kb-gateway && ./scripts/assess_langsmith_split.sh 30 >> logs/cron-split-assess.log 2>&1
