@@ -1,10 +1,31 @@
 # Client setup — wire remote agents to kb-gateway
 
-## Cursor (remote / cloud agent)
+## Remote via Tailscale (no Serve required)
+
+If Cole is on your **smithjsfamily@** tailnet (same as `vetriq-server`), use the MagicDNS or tailnet IP directly:
+
+```json
+{
+  "mcpServers": {
+    "keyflo-learning-kb": {
+      "url": "http://100.122.28.113:8790/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_KB_GATEWAY_API_TOKEN"
+      }
+    }
+  }
+}
+```
+
+Or MagicDNS: `http://vetriq-server:8790/mcp` (when on tailnet).
+
+Traffic stays inside the tailnet (WireGuard) — no public internet exposure.
+
+## Cursor (remote / cloud agent) — Tailscale Serve (optional HTTPS)
 
 Add MCP server in Cursor settings (Streamable HTTP):
 
-**After Tailscale Serve is enabled** (see [`deployment.md`](deployment.md)), use the HTTPS URL Tailscale assigns to `vetriq-server`:
+**If Tailscale Serve is enabled** on the tailnet (see [`deployment.md`](deployment.md)), use the HTTPS URL Tailscale assigns to `vetriq-server`:
 
 ```json
 {

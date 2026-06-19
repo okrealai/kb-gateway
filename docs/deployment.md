@@ -44,7 +44,8 @@ Never give remote agents Pinecone or Neo4j credentials — they use MCP tools on
 
 | Method | When | Notes |
 |---|---|---|
-| **Tailscale Serve** | Preferred for Cole + your machines | Enable at [tailscale serve admin](https://login.tailscale.com/f/serve); then `sudo tailscale serve --bg http://127.0.0.1:8790`. Server node: `vetriq-server` (100.122.28.113). |
+| **Tailscale (direct)** | **Works now** — Cole on same tailnet | Gateway binds `100.122.28.113:8790` (vetriq-server). Bearer token required. |
+| **Tailscale Serve** | Optional HTTPS | Enable at [tailscale serve admin](https://login.tailscale.com/f/serve?node=nfdH3hCrJi11CNTRL); then `sudo tailscale serve --bg http://127.0.0.1:8790` and revert bind to 127.0.0.1 |
 | **Cloudflare Tunnel** | Public HTTPS with Access policy | Zero trust; no open ports |
 | **SSH tunnel** | Dev / emergency | `ssh -L 8790:127.0.0.1:8790 server` |
 
