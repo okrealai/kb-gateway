@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# Sync MCP handoff variables to kb-gateway GitHub repo.
+# Sync MCP handoff variables to kb-gateway GitHub repos.
 set -euo pipefail
 
-REPO="${KB_GATEWAY_GH_REPO:-James-Server-Admin/kb-gateway}"
 KEYS="/mnt/blockstorage/private/credentials/learning-kb-api-keys.txt"
+REPOS=(
+  "KeyFlo-ai/kb-gateway"
+  "James-Server-Admin/kb-gateway"
+  "okrealai/kb-gateway"
+)
 
 source /mnt/blockstorage/env/load.sh kb-gateway 2>/dev/null || true
 BASE="${KB_GATEWAY_PUBLIC_URL:-https://kb-mcp.waytie.com}"
@@ -31,9 +35,18 @@ fi
 unset GH_TOKEN GITHUB_TOKEN
 gh auth switch --user okrealai >/dev/null 2>&1 || true
 
-gh variable set KB_GATEWAY_MCP_URL --body "$URL" -R "$REPO"
-gh variable set KB_GATEWAY_MCP_TOKEN --body "$cole_token" -R "$REPO"
-gh variable set CLIENT_SETUP --body "Read docs/CLIENT-SETUP.md. Run ./scripts/setup-mcp.sh then add config/mcp.json to Cursor MCP." -R "$REPO"
-gh variable set COLE_SETUP --body "Read docs/CLIENT-SETUP.md (alias). Run ./scripts/setup-mcp.sh." -R "$REPO"
+COLE_SETUP_KEYFLO="Read docs/COLE-SETUP.md. Clone KeyFlo-ai/kb-gateway, run ./scripts/setup-mcp.sh, add config/mcp.json to Cursor MCP. URL: ${URL}"
+COLE_SETUP_EXT="Read docs/CLIENT-SETUP.md. Clone James-Server-Admin/kb-gateway, run ./scripts/setup-mcp.sh. URL: ${URL}"
 
-echo "ok: synced variables to $REPO"
+for REPO in "${REPOS[@]}"; do
+  gh variable set KB_GATEWAY_MCP_URL --body "$URL" -R "$REPO"
+  gh variable set KB_GATEWAY_MCP_TOKEN --body "$cole_token" -R "$REPO"
+  gh variable set KB_GATEWAY_REPO --body "James-Server-Admin/kb-gateway" -R "$REPO"
+  gh variable set CLIENT_SETUP --body "Read docs/CLIENT-SETUP.md. Run ./scripts/setup-mcp.sh then add config/mcp.json to Cursor MCP." -R "$REPO"
+  if [[ "$REPO" == "KeyFlo-ai/kb-gateway" ]]; then
+    gh variable set COLE_SETUP --body "$COLE_SETUP_KEYFLO" -R "$REPO"
+  else
+    gh variable set COLE_SETUP --body "$COLE_SETUP_EXT" -R "$REPO"
+  fi
+  echo "ok: synced variables to $REPO"
+done

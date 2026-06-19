@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-REPO="${KB_GATEWAY_GH_REPO:-James-Server-Admin/kb-gateway}"
+REPO="${KB_GATEWAY_GH_REPO:-KeyFlo-ai/kb-gateway}"
 OUT="${ROOT}/config/mcp.json"
 
 if ! command -v gh >/dev/null; then
@@ -18,7 +18,7 @@ fetch_var() {
 URL="$(fetch_var "$REPO" KB_GATEWAY_MCP_URL)"
 TOKEN="$(fetch_var "$REPO" KB_GATEWAY_MCP_TOKEN)"
 if [[ -z "$URL" || -z "$TOKEN" ]]; then
-  for fallback in okrealai/kb-gateway; do
+  for fallback in James-Server-Admin/kb-gateway okrealai/kb-gateway; do
     [[ "$REPO" == "$fallback" ]] && continue
     URL="$(fetch_var "$fallback" KB_GATEWAY_MCP_URL)"
     TOKEN="$(fetch_var "$fallback" KB_GATEWAY_MCP_TOKEN)"

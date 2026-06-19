@@ -1,16 +1,33 @@
 # kb-gateway
 
-HTTP MCP gateway for the **learning corpus** — Pinecone + Neo4j + agentic router — usable from anywhere.
+HTTP MCP gateway for the **learning corpus** — Pinecone + Neo4j + agentic router.
 
-**Production:** `https://kb-mcp.waytie.com/mcp` · **Repo home:** [`James-Server-Admin/kb-gateway`](https://github.com/James-Server-Admin/kb-gateway)
+## Cole — start here (KeyFlo org)
+
+**MCP endpoint:** `https://kb-mcp.waytie.com/mcp`
+
+```bash
+git clone git@github.com:KeyFlo-ai/kb-gateway.git
+cd kb-gateway
+gh auth login
+./scripts/setup-mcp.sh          # pulls KB_GATEWAY_MCP_* from GitHub variables
+# paste config/mcp.json → Cursor Settings → MCP
+```
+
+→ Full guide: [`docs/COLE-SETUP.md`](docs/COLE-SETUP.md) · GitHub variable `COLE_SETUP` points here.
+
+**HTTP API (no MCP):** [`KeyFlo-ai/knowledge-base`](https://github.com/KeyFlo-ai/knowledge-base) · `https://kb-api.keyflo.ai`
+
+---
 
 | Audience | Start here |
 |---|---|
-| **Clients / collaborators** | [`docs/CLIENT-SETUP.md`](docs/CLIENT-SETUP.md) |
+| **Cole / KeyFlo collaborators** | [`docs/COLE-SETUP.md`](docs/COLE-SETUP.md) |
+| **External collaborators** | [`James-Server-Admin/kb-gateway`](https://github.com/James-Server-Admin/kb-gateway) |
 | **LLMs / agents** | [`AGENTS.md`](AGENTS.md) |
-| **Humans** | This README |
 | **Discovery** | [`llms.txt`](llms.txt) |
-| **Gated project run dir** | [`../09_Projects/kb-gateway/run/STATE.md`](../09_Projects/kb-gateway/run/STATE.md) |
+
+**Production:** `https://kb-mcp.waytie.com/mcp`
 
 ## What it does
 
@@ -24,32 +41,19 @@ Remote agents call MCP tools instead of holding Pinecone/Neo4j credentials:
 | `list_namespaces` | Corpus inventory |
 | `health` | Dependency check |
 
-## Quick start (server)
+## Quick start (server operator)
 
 ```bash
-source /mnt/blockstorage/env/load.sh global
-export KB_GATEWAY_API_TOKEN="<operator-issued>"
-export KB_GATEWAY_PUBLIC_URL="https://kb-gateway.your-tailnet.example"
-
+source /mnt/blockstorage/env/load.sh kb-gateway
 /root/.venv-langchain-course/bin/python -m kb_gateway --transport streamable-http
-# MCP endpoint: http://127.0.0.1:8790/mcp
+# binds 127.0.0.1:8790 — public via kb-mcp.waytie.com nginx
 ```
-
-Local stdio (Cursor on server):
-
-```bash
-/root/.venv-langchain-course/bin/python -m kb_gateway --transport stdio --no-auth
-```
-
-## Client setup
-
-See [`docs/client-setup.md`](docs/client-setup.md) for Cursor, Claude Desktop, and remote agent config.
 
 ## Architecture
 
-[`ARCHITECTURE.md`](ARCHITECTURE.md) · [`RUNBOOK.md`](RUNBOOK.md)
+[`ARCHITECTURE.md`](ARCHITECTURE.md) · [`RUNBOOK.md`](RUNBOOK.md) · [`docs/client-setup.md`](docs/client-setup.md)
 
 ## Related
 
-- [`okrealai/langchain-course`](https://github.com/okrealai/langchain-course) — runtime deps (router, RAG, ingest)
-- Gated routine: `/root/.claude/references/gated-execution-routine.md`
+- [`KeyFlo-ai/knowledge-base`](https://github.com/KeyFlo-ai/knowledge-base) — parallel HTTP API
+- [`okrealai/langchain-course`](https://github.com/okrealai/langchain-course) — router runtime deps
