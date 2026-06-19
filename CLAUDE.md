@@ -36,6 +36,7 @@ Smoke: `scripts/smoke_test.sh`
 - Remote clients get MCP tools only — never Pinecone/Neo4j keys
 - Namespace whitelist enforced in `kb_gateway/config.py`
 - Default remote tool: `route_query` when routing ambiguous
+- **Endpoint specs:** [`docs/ENDPOINT-CATALOG.md`](docs/ENDPOINT-CATALOG.md) — tools, HTTP parity, corpus inventory, routing tree
 
 ## Owners
 

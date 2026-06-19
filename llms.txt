@@ -1,6 +1,7 @@
 # kb-gateway — agent discovery
 
 - [AGENTS.md](AGENTS.md): LLM instructions — tool routing, env, when NOT to use
+- [docs/ENDPOINT-CATALOG.md](docs/ENDPOINT-CATALOG.md): **Endpoint cards — MCP + HTTP + corpus inventory (start here for full capacity)**
 - [README.md](README.md): Human overview
 - [docs/routing.md](docs/routing.md): Pinecone vs Neo4j vs router
 - [docs/deployment.md](docs/deployment.md): Host for remote access
